@@ -15,13 +15,14 @@ public class WalletUserRequest extends RetrofitSpiceRequest<WalletUser , WalletA
     public WalletUserRequest(String studentId) {
         super(WalletUser.class, WalletApi.class);
         this.studentId = studentId;
+        
 
     }
 
     @Override
     public WalletUser loadDataFromNetwork() throws Exception {
 
-        Ln.d("Call Web service");
+        Ln.d("Requesting information for " + studentId);
          return getService().userInfo(studentId);
     }
 }

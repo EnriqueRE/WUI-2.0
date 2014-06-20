@@ -24,7 +24,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cita.wallet.app.models.LdapResponse;
 import com.cita.wallet.app.models.WalletUser;
+import com.cita.wallet.app.network.LdapAuthRequest;
 import com.cita.wallet.app.network.WalletUserRequest;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -46,6 +48,8 @@ public class LoginActivity extends BaseWalletActivity implements
 	 */
 
 	WalletUserRequest infoRequest;
+	LdapAuthRequest ldapRequest;
+	String email, password;
 
 	// UI references.
 	private AutoCompleteTextView mEmailView;
@@ -104,8 +108,8 @@ public class LoginActivity extends BaseWalletActivity implements
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		String email = mEmailView.getText().toString();
-		String password = mPasswordView.getText().toString();
+		email = mEmailView.getText().toString();
+		password = mPasswordView.getText().toString();
 
 		boolean cancel = false;
 		View focusView = null;
@@ -135,9 +139,9 @@ public class LoginActivity extends BaseWalletActivity implements
 		} else {
 			// Show a progress spinner, and kick off a background task to
 			// perform the user login attempt.
-			infoRequest = new WalletUserRequest(email.split("@")[0]);
-			getSpiceManager().execute(infoRequest, "user",
-					DurationInMillis.ONE_SECOND, new InfoListRequestListener());
+			ldapRequest = new LdapAuthRequest(email.split("@")[0], password);
+			getSpiceManager().execute(ldapRequest, "ldap",
+					DurationInMillis.ONE_SECOND, new LdapRequestListener());
 			showProgress(true);
 
 		}
@@ -261,11 +265,52 @@ public class LoginActivity extends BaseWalletActivity implements
 		@Override
 		public void onRequestSuccess(WalletUser walletUser) {
 			Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
+			Ln.e(walletUser.toString());
 			mIntent.putExtra("user", walletUser);
 			startActivity(mIntent);
 			finish();
 
 		}
+	}
+
+	public final class LdapRequestListener implements
+			RequestListener<LdapResponse> {
+
+		@Override
+		public void onRequestFailure(SpiceException arg0) {
+			Toast.makeText(LoginActivity.this,
+					getString(R.string.error_message), Toast.LENGTH_SHORT)
+					.show();
+			showProgress(false);
+		}
+
+		@Override
+		public void onRequestSuccess(LdapResponse arg0) {
+
+			switch (arg0.getCode()) {
+			case 1: // valid user
+				Ln.w("Response message: "+ arg0.getMessage());
+				infoRequest = new WalletUserRequest(email.split("@")[0]);
+				getSpiceManager().execute(infoRequest, "user",
+						DurationInMillis.ONE_SECOND,
+						new InfoListRequestListener());
+				break;
+			case 3:
+				Toast.makeText(LoginActivity.this,
+						getString(R.string.error_message), Toast.LENGTH_SHORT)
+						.show();
+				showProgress(false);
+			case 4:
+				Toast.makeText(LoginActivity.this,
+						getString(R.string.error_message), Toast.LENGTH_SHORT)
+						.show();
+				showProgress(false);
+			default:
+				break;
+			}
+
+		}
+
 	}
 
 }
