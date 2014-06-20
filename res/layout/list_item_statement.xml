@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="3"
+    android:orientation="vertical"
+    android:rowCount="11" >
+
+    <TextView
+        android:id="@+id/txt_tuition_title"
+        android:layout_column="1"
+        android:layout_gravity="left|top"
+        android:layout_row="6"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="@dimen/margin_medium"
+        android:text="Colegiatura"
+        android:textColor="@color/wallet_red"
+        android:textSize="@dimen/text_large" />
+
+    <TextView
+        android:id="@+id/txt_tuition_value"
+        android:layout_column="2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="6"
+        android:padding="@dimen/margin_medium"
+        android:text="250.33"
+        android:textColor="@color/wellcome_background"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txt_insurance_title"
+        android:layout_column="1"
+        android:layout_gravity="left|top"
+        android:layout_row="8"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="@dimen/margin_medium"
+        android:text="Seguros"
+        android:textColor="@color/wallet_red"
+        android:textSize="@dimen/text_large" />
+
+    <TextView
+        android:id="@+id/txt_insurance_value"
+        android:layout_column="2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="8"
+        android:padding="@dimen/margin_medium"
+        android:text="250.33"
+        android:textColor="@color/wellcome_background"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txt_services_value"
+        android:layout_column="2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="9"
+        android:padding="@dimen/margin_medium"
+        android:text="250.33"
+        android:textColor="@color/wellcome_background"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txt_date_title"
+        android:layout_column="1"
+        android:layout_gravity="left|top"
+        android:layout_row="1"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="@dimen/margin_medium"
+        android:text="Fecha del Corte"
+        android:textColor="@color/wallet_red"
+        android:textSize="@dimen/text_large" />
+
+    <TextView
+        android:id="@+id/txt_date_value"
+        android:layout_column="2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="1"
+        android:padding="@dimen/margin_medium"
+        android:text="2014-05-22"
+        android:textColor="@color/wellcome_background"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txt_services_title"
+        android:layout_column="1"
+        android:layout_gravity="left|top"
+        android:layout_row="9"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="@dimen/margin_medium"
+        android:text="Servicios Diversos"
+        android:textColor="@color/wallet_red"
+        android:textSize="@dimen/text_large" />
+
+    <TextView
+        android:id="@+id/txt_interests"
+        android:layout_column="1"
+        android:layout_gravity="left|top"
+        android:layout_row="10"
+        android:fontFamily="sans-serif-condensed"
+        android:lines="2"
+        android:padding="@dimen/margin_medium"
+        android:text="@string/interests_text"
+        android:textColor="@color/wallet_red"
+        android:textSize="@dimen/text_medium" />
+
+    <TextView
+        android:id="@+id/txt_interests_value"
+        android:layout_column="2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="10"
+        android:padding="@dimen/margin_medium"
+        android:text="250.33"
+        android:textColor="@color/wellcome_background"
+        android:textSize="@dimen/text_medium"
+        android:textStyle="italic" />
+
+</GridLayout>
