@@ -129,4 +129,14 @@ public class WalletUser implements Parcelable {
             return new WalletUser[size];
         }
     };
+
+	@Override
+	public String toString() {
+		return "WalletUser [student_id=" + student_id + ", student_name="
+				+ student_name + ", student_middle_name=" + student_middle_name
+				+ ", student_lastname=" + student_lastname
+				+ ", student_second_lastname=" + student_second_lastname
+				+ ", student_badge_id=" + student_badge_id + ", student_email="
+				+ student_email + "]";
+	}
 }

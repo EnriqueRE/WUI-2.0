@@ -8,7 +8,7 @@ import roboguice.util.temp.Ln;
 /**
  * Class that retrieves all the transactions for a given user, start date and end date.
  * date in the format of yyyy-mm-dd
- * Created by Enrique Ramírez on 5/26/14.
+ * Created by Enrique Rammirez on 5/26/14.
  */
 public class StatementsByDateRequest extends RetrofitSpiceRequest<WalletStatement.List, WalletApi> {
 
@@ -25,7 +25,7 @@ public class StatementsByDateRequest extends RetrofitSpiceRequest<WalletStatemen
 
     @Override
     public WalletStatement.List loadDataFromNetwork() throws Exception {
-        Ln.d("Call web service");
+        Ln.d("Calling web-service for "+studentId+" "+endDate+" "+startDate+" ");
         return getService().statementsByDate(studentId, endDate, startDate);
     }
 }

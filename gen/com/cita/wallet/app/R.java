@@ -249,43 +249,48 @@ containing a value of this type.
         public static final int decorator=0x7f020015;
         public static final int ic_access=0x7f020016;
         public static final int ic_account=0x7f020017;
-        public static final int ic_date=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int ic_nfc=0x7f02001a;
-        public static final int ic_vending=0x7f02001b;
-        public static final int list_focused_wallet=0x7f02001c;
-        public static final int list_pressed_wallet=0x7f02001d;
-        public static final int menu_dropdown_panel_wallet=0x7f02001e;
-        public static final int nfc_logo=0x7f02001f;
-        public static final int progress_bg_wallet=0x7f020020;
-        public static final int progress_horizontal_wallet=0x7f020021;
-        public static final int progress_primary_wallet=0x7f020022;
-        public static final int progress_secondary_wallet=0x7f020023;
-        public static final int selectable_background_wallet=0x7f020024;
-        public static final int spinner_ab_default_wallet=0x7f020025;
-        public static final int spinner_ab_disabled_wallet=0x7f020026;
-        public static final int spinner_ab_focused_wallet=0x7f020027;
-        public static final int spinner_ab_pressed_wallet=0x7f020028;
-        public static final int spinner_background_ab_wallet=0x7f020029;
-        public static final int tab_indicator_ab_wallet=0x7f02002a;
-        public static final int tab_selected_focused_wallet=0x7f02002b;
-        public static final int tab_selected_pressed_wallet=0x7f02002c;
-        public static final int tab_selected_wallet=0x7f02002d;
-        public static final int tab_unselected_focused_wallet=0x7f02002e;
-        public static final int tab_unselected_pressed_wallet=0x7f02002f;
-        public static final int tab_unselected_wallet=0x7f020030;
-        public static final int wallet_float_label=0x7f020031;
-        public static final int whitebutton_btn_default_disabled_focused_holo_light=0x7f020032;
-        public static final int whitebutton_btn_default_disabled_holo_light=0x7f020033;
-        public static final int whitebutton_btn_default_focused_holo_light=0x7f020034;
-        public static final int whitebutton_btn_default_holo_light=0x7f020035;
-        public static final int whitebutton_btn_default_normal_holo_light=0x7f020036;
-        public static final int whitebutton_btn_default_pressed_holo_light=0x7f020037;
+        public static final int ic_cuenta=0x7f020018;
+        public static final int ic_date=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_main_access=0x7f02001b;
+        public static final int ic_main_account=0x7f02001c;
+        public static final int ic_main_vending=0x7f02001d;
+        public static final int ic_nfc=0x7f02001e;
+        public static final int ic_vending=0x7f02001f;
+        public static final int list_focused_wallet=0x7f020020;
+        public static final int list_pressed_wallet=0x7f020021;
+        public static final int menu_dropdown_panel_wallet=0x7f020022;
+        public static final int nfc_logo=0x7f020023;
+        public static final int progress_bg_wallet=0x7f020024;
+        public static final int progress_horizontal_wallet=0x7f020025;
+        public static final int progress_primary_wallet=0x7f020026;
+        public static final int progress_secondary_wallet=0x7f020027;
+        public static final int selectable_background_wallet=0x7f020028;
+        public static final int spinner_ab_default_wallet=0x7f020029;
+        public static final int spinner_ab_disabled_wallet=0x7f02002a;
+        public static final int spinner_ab_focused_wallet=0x7f02002b;
+        public static final int spinner_ab_pressed_wallet=0x7f02002c;
+        public static final int spinner_background_ab_wallet=0x7f02002d;
+        public static final int tab_indicator_ab_wallet=0x7f02002e;
+        public static final int tab_selected_focused_wallet=0x7f02002f;
+        public static final int tab_selected_pressed_wallet=0x7f020030;
+        public static final int tab_selected_wallet=0x7f020031;
+        public static final int tab_unselected_focused_wallet=0x7f020032;
+        public static final int tab_unselected_pressed_wallet=0x7f020033;
+        public static final int tab_unselected_wallet=0x7f020034;
+        public static final int wallet_float_label=0x7f020035;
+        public static final int whitebutton_btn_default_disabled_focused_holo_light=0x7f020036;
+        public static final int whitebutton_btn_default_disabled_holo_light=0x7f020037;
+        public static final int whitebutton_btn_default_focused_holo_light=0x7f020038;
+        public static final int whitebutton_btn_default_holo_light=0x7f020039;
+        public static final int whitebutton_btn_default_normal_holo_light=0x7f02003a;
+        public static final int whitebutton_btn_default_pressed_holo_light=0x7f02003b;
     }
     public static final class id {
         public static final int FrameLayout1=0x7f090010;
         public static final int RelativeLayout1=0x7f090011;
         public static final int TextView1=0x7f090012;
+        public static final int action_logout=0x7f090024;
         public static final int action_settings=0x7f090022;
         public static final int calendar=0x7f090023;
         public static final int calendar_grid=0x7f090021;
@@ -367,45 +372,46 @@ containing a value of this type.
         public static final int nfcactivity=0x7f0a0003;
     }
     public static final class string {
+        public static final int action_logout=0x7f070006;
         public static final int action_settings=0x7f070005;
-        public static final int action_sign_in=0x7f07000f;
-        public static final int action_sign_in_short=0x7f070010;
+        public static final int action_sign_in=0x7f070010;
+        public static final int action_sign_in_short=0x7f070011;
         /**  Activity Main 
          */
-        public static final int ad_description=0x7f070016;
+        public static final int ad_description=0x7f070017;
         public static final int app_name=0x7f070003;
         /**  Acount statement fragment menu 
          */
-        public static final int calendar_title=0x7f07001b;
+        public static final int calendar_title=0x7f07001c;
         public static final int day_name_format=0x7f070000;
-        public static final int decorator_description=0x7f070017;
-        public static final int dialog_button=0x7f07001a;
+        public static final int decorator_description=0x7f070018;
+        public static final int dialog_button=0x7f07001b;
         /**  Date Selection Dialog 
          */
-        public static final int dialog_title=0x7f070019;
-        public static final int error_field_required=0x7f070014;
-        public static final int error_incorrect_password=0x7f070013;
-        public static final int error_invalid_email=0x7f070011;
-        public static final int error_invalid_password=0x7f070012;
-        public static final int error_message=0x7f070015;
-        public static final int estado_list_item_amount=0x7f07000b;
-        public static final int hello_blank_fragment=0x7f07000a;
+        public static final int dialog_title=0x7f07001a;
+        public static final int error_field_required=0x7f070015;
+        public static final int error_incorrect_password=0x7f070014;
+        public static final int error_invalid_email=0x7f070012;
+        public static final int error_invalid_password=0x7f070013;
+        public static final int error_message=0x7f070016;
+        public static final int estado_list_item_amount=0x7f07000c;
+        public static final int hello_blank_fragment=0x7f07000b;
         public static final int hello_world=0x7f070004;
-        public static final int interests_text=0x7f07001c;
+        public static final int interests_text=0x7f07001d;
         public static final int invalid_date=0x7f070001;
-        public static final int login_welcome_message=0x7f070006;
+        public static final int login_welcome_message=0x7f070007;
         public static final int month_name_format=0x7f070002;
         /**  Fragment account statement 
          */
-        public static final int no_info_message=0x7f070018;
+        public static final int no_info_message=0x7f070019;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f07000d;
-        public static final int prompt_password=0x7f07000e;
-        public static final int title_activity_account_statement=0x7f070009;
-        public static final int title_activity_login=0x7f07000c;
-        public static final int title_activity_nfcactivity=0x7f070008;
-        public static final int welcome_messages=0x7f070007;
+        public static final int prompt_email=0x7f07000e;
+        public static final int prompt_password=0x7f07000f;
+        public static final int title_activity_account_statement=0x7f07000a;
+        public static final int title_activity_login=0x7f07000d;
+        public static final int title_activity_nfcactivity=0x7f070009;
+        public static final int welcome_messages=0x7f070008;
     }
     public static final class style {
         public static final int ActionBar_Solid_Wallet=0x7f080005;

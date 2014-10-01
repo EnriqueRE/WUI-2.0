@@ -17,6 +17,7 @@
         android:targetSdkVersion="19" />
 
     <application
+        android:name="com.cita.wallet.app.WuiApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -39,7 +40,7 @@
         <service
             android:name="com.cita.wallet.app.network.WalletRetrofitSpiceService"
             android:exported="false" />
-s
+
         <activity
             android:name="com.cita.wallet.app.NfcActivity"
             android:label="@string/title_activity_nfcactivity"
@@ -51,7 +52,8 @@ s
         <activity
             android:name="com.cita.wallet.app.AccountStatementActivity"
             android:label="@string/title_activity_account_statement"
-            android:parentActivityName="com.cita.wallet.app.MainActivity" >
+            android:parentActivityName="com.cita.wallet.app.MainActivity"
+            android:icon="@drawable/ic_cuenta" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cita.wallet.app.MainActivity" />

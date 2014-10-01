@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.cita.wallet.app.fragments.AccountStatementFragment;
 import com.cita.wallet.app.models.WalletUser;
+import com.cita.wallet.app.utils.AppUtils;
 
 public class AccountStatementActivity extends Activity implements
 		AccountStatementFragment.OnFragmentInteractionListener {
@@ -19,18 +20,14 @@ public class AccountStatementActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account_statement);
-		Bundle extras = getIntent().getExtras();
 
-		if (extras != null) {
-			mUser = extras.getParcelable("user");
-			Ln.d(mUser.getStudent_name());
-		}
+		AppUtils utils = new AppUtils(getApplicationContext());
+		String userId = utils.getStringFromStorage("user");
 
 		getFragmentManager()
 				.beginTransaction()
 				.add(R.id.container,
-						AccountStatementFragment.newInstance(mUser
-								.getStudent_id())).commit();
+						AccountStatementFragment.newInstance(userId)).commit();
 
 	}
 

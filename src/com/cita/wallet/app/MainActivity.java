@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.cita.wallet.app.fragments.AppSectionsFragment;
 import com.cita.wallet.app.models.WalletUser;
+import com.cita.wallet.app.utils.AppUtils;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -26,18 +27,12 @@ public class MainActivity extends BaseWalletActivity implements
 		setContentView(R.layout.activity_main);
 		ButterKnife.inject(this);
 
-		Bundle extras = getIntent().getExtras();
+		AppUtils utils = new AppUtils(getApplicationContext());
+		Resources res = getResources();
+		String text = String.format(res.getString(R.string.welcome_messages),
+				utils.getStringFromStorage("name"));
 
-		if (extras != null) {
-			mUser = extras.getParcelable("user");
-
-			Resources res = getResources();
-			String text = String.format(
-					res.getString(R.string.welcome_messages),
-					mUser.getStudent_name());
-
-			welcome_message.setText(text);
-		}
+		welcome_message.setText(text);
 
 	}
 
@@ -54,8 +49,14 @@ public class MainActivity extends BaseWalletActivity implements
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+		if (id == R.id.action_logout) {
+			AppUtils utils = new AppUtils(getApplicationContext());
+			utils.clearPreferences();
+			Intent mIntent = new Intent(getApplicationContext(),
+					LoginActivity.class);
+			startActivity(mIntent);
+			
+			finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -75,8 +76,6 @@ public class MainActivity extends BaseWalletActivity implements
 		case 1: // Estado de Cuent
 			mIntent = new Intent(MainActivity.this,
 					AccountStatementActivity.class);
-			mIntent.putExtra("user", mUser);
-
 			break;
 
 		case 2: // Accesos

@@ -24,7 +24,7 @@ public class AppUtils {
 	public void clearPreferences() {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"PREFERENCE", 0);
+				"com.cita.wallet", 0);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.clear();
 		editor.commit();
@@ -34,7 +34,7 @@ public class AppUtils {
 	public void saveIntegerToStorage(String key, int value) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = preferences.edit();
 
@@ -46,7 +46,7 @@ public class AppUtils {
 	public int getIntegerFromStorage(String key) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		return preferences.getInt(key, 0);
 
@@ -55,7 +55,7 @@ public class AppUtils {
 	public void saveBooleanToStorage(String key, boolean value) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = preferences.edit();
 
@@ -67,7 +67,7 @@ public class AppUtils {
 	public boolean getBooleanFromStorage(String key) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		return preferences.getBoolean(key, false);
 
@@ -76,7 +76,7 @@ public class AppUtils {
 	public void saveStringToStorage(String key, String value) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		SharedPreferences.Editor editor = preferences.edit();
 
@@ -88,7 +88,7 @@ public class AppUtils {
 	public String getStringFromStorage(String key) {
 
 		SharedPreferences preferences = context.getSharedPreferences(
-				"com.cita.nama", Context.MODE_PRIVATE);
+				"com.cita.wallet", Context.MODE_PRIVATE);
 
 		return preferences.getString(key, "");
 
@@ -125,6 +125,26 @@ public class AppUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		return sdf.format(date);
+
+	}
+	
+	public boolean alreadyLoggedIn() {
+		
+		SharedPreferences settings = context.getSharedPreferences(
+				"com.cita.wallet", Context.MODE_PRIVATE);
+
+		return settings.getBoolean("logged", false);
+
+	}
+
+	public void setLoggedIn(boolean logged) {
+
+		SharedPreferences settings = context.getSharedPreferences(
+				"com.cita.wallet", Context.MODE_PRIVATE);
+		
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("logged", logged);
+		editor.commit();
 
 	}
 

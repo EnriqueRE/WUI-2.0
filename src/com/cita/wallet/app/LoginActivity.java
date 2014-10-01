@@ -24,8 +24,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cita.wallet.app.models.LdapResponse;
 import com.cita.wallet.app.models.WalletUser;
+import com.cita.wallet.app.network.LdapAuthRequest;
 import com.cita.wallet.app.network.WalletUserRequest;
+import com.cita.wallet.app.utils.AppUtils;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -46,6 +49,8 @@ public class LoginActivity extends BaseWalletActivity implements
 	 */
 
 	WalletUserRequest infoRequest;
+	LdapAuthRequest ldapRequest;
+	String email, password;
 
 	// UI references.
 	private AutoCompleteTextView mEmailView;
@@ -57,6 +62,21 @@ public class LoginActivity extends BaseWalletActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
+		// Check if user is logged in
+
+		AppUtils utils = new AppUtils(getApplicationContext());
+
+		boolean isLoggedIn = utils.alreadyLoggedIn();
+
+		if (isLoggedIn) {
+
+			Intent mIntent = new Intent(getApplicationContext(),
+					MainActivity.class);
+			startActivity(mIntent);
+			finish();
+
+		}
 
 		// Set up the login form.
 		mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -104,8 +124,8 @@ public class LoginActivity extends BaseWalletActivity implements
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		String email = mEmailView.getText().toString();
-		String password = mPasswordView.getText().toString();
+		email = mEmailView.getText().toString();
+		password = mPasswordView.getText().toString();
 
 		boolean cancel = false;
 		View focusView = null;
@@ -122,10 +142,6 @@ public class LoginActivity extends BaseWalletActivity implements
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!isEmailValid(email)) {
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
-			cancel = true;
 		}
 
 		if (cancel) {
@@ -134,18 +150,13 @@ public class LoginActivity extends BaseWalletActivity implements
 			focusView.requestFocus();
 		} else {
 			// Show a progress spinner, and kick off a background task to
-			// perform the user login attempt.
-			infoRequest = new WalletUserRequest(email.split("@")[0]);
-			getSpiceManager().execute(infoRequest, "user",
-					DurationInMillis.ONE_SECOND, new InfoListRequestListener());
+			// perform the user login attempt..split("@")[0]
+			ldapRequest = new LdapAuthRequest(email.toUpperCase(), password);
+			getSpiceManager().execute(ldapRequest, "ldap",
+					DurationInMillis.ONE_SECOND, new LdapRequestListener());
 			showProgress(true);
 
 		}
-	}
-
-	private boolean isEmailValid(String email) {
-		// TODO: Replace this with your own logic
-		return email.contains("@");
 	}
 
 	private boolean isPasswordValid(String password) {
@@ -261,11 +272,60 @@ public class LoginActivity extends BaseWalletActivity implements
 		@Override
 		public void onRequestSuccess(WalletUser walletUser) {
 			Intent mIntent = new Intent(LoginActivity.this, MainActivity.class);
+			Ln.e(walletUser.toString());
+
+			// Saving user's stuff
+
+			AppUtils utils = new AppUtils(getApplicationContext());
+			utils.saveStringToStorage("user", email);
+			utils.saveStringToStorage("pass", password);
+			utils.saveStringToStorage("name", walletUser.getStudent_name());
+			utils.setLoggedIn(true);
 			mIntent.putExtra("user", walletUser);
 			startActivity(mIntent);
 			finish();
 
 		}
+	}
+
+	public final class LdapRequestListener implements
+			RequestListener<LdapResponse> {
+
+		@Override
+		public void onRequestFailure(SpiceException arg0) {
+			Toast.makeText(LoginActivity.this,
+					getString(R.string.error_message), Toast.LENGTH_SHORT)
+					.show();
+			showProgress(false);
+		}
+
+		@Override
+		public void onRequestSuccess(LdapResponse arg0) {
+
+			switch (arg0.getCode()) {
+			case 1: // valid user
+				Ln.w("Response message: " + arg0.getMessage());
+				infoRequest = new WalletUserRequest(email.split("@")[0]);
+				getSpiceManager().execute(infoRequest, "user",
+						DurationInMillis.ONE_SECOND,
+						new InfoListRequestListener());
+				break;
+			case 3:
+				Toast.makeText(LoginActivity.this,
+						getString(R.string.error_message), Toast.LENGTH_SHORT)
+						.show();
+				showProgress(false);
+			case 4:
+				Toast.makeText(LoginActivity.this,
+						getString(R.string.error_message), Toast.LENGTH_SHORT)
+						.show();
+				showProgress(false);
+			default:
+				break;
+			}
+
+		}
+
 	}
 
 }

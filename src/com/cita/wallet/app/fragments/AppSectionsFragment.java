@@ -80,9 +80,9 @@ public class AppSectionsFragment extends Fragment implements AbsListView.OnItemC
 
         // TODO: Change strings to strings from resources
         ArrayList<MainMenuItem> items = new ArrayList<MainMenuItem>();
-        items.add(new MainMenuItem(R.drawable.ic_vending, "Vending"));
-        items.add(new MainMenuItem(R.drawable.ic_account, "Estado de Cuenta"));
-        items.add(new MainMenuItem(R.drawable.ic_access, "Accesos"));
+        items.add(new MainMenuItem(R.drawable.ic_main_vending, "Vending"));
+        items.add(new MainMenuItem(R.drawable.ic_main_account, "Estado de Cuenta"));
+        items.add(new MainMenuItem(R.drawable.ic_main_access, "Accesos"));
 
         mAdapter = new MainMenuAdapter(getActivity(), items);
     }
